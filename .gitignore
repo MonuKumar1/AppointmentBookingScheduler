@@ -1,0 +1,10 @@
+# Spec Kit machine-local state is already ignored via .specify/.gitignore
+.claude/settings.local.json
+.DS_Store
+
+# Java / Maven build output and IDE files
+target/
+*.class
+*.iml
+.idea/
+.vscode/
