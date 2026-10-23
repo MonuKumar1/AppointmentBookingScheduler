@@ -27,6 +27,7 @@ Detail lives in the linked files; keep this file short.
 | 2026-10-23 | /speckit-analyze: FR-014–018 renumbered DR-001–005 (deliverable reqs, exempt from automated-test rule); small fixes applied. D1 = (a) locks from the start (US4 tests written inside US1/US2 phases; 32 tasks); D3 = accept `-00:00` | prompts/04b-analyze.md |
 | 2026-10-23 | Acceptance validation: tests + black-box CLI run only, no mutation checks (user choice); report in docs/acceptance-report.md | prompts/07-acceptance.md |
 | 2026-10-23 | Deliverables review: README points reviewers to docs/design.md first (specs/ = process trail); limitations split discovered (L7–L11) vs prototype limits (L1–L6); verbatim excerpts added to AI records | prompts/08-deliverables.md |
+| 2026-10-23 | Local test UI (HTML + Swagger over a JDK HttpServer) lives in gitignored `local-ui/`; not a deliverable, no README mention, pom untouched. Run: `./local-ui/c[port]` | .gitignore |
 | 2026-10-23 | CLI: stdin/stdout line commands + `demo`; run via `java -cp target/classes com.example.booking.cli.BookingCli` | contracts/cli.md |
 
 ## Fixed rules from the brief
