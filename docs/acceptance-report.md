@@ -3,8 +3,10 @@
 Validation, and scope compliance, of the committed implementation (`79732fa`, 2026-10-23; TC-010 reworked afterwards on review, still 247/247) against the 7 acceptance
 criteria in the brief. Each criterion has two independent kinds of evidence:
 
-1. **Automated tests.** `mvn clean verify` gives **247 tests, 0 failures, 0 errors** (BUILD SUCCESS).
-   Test methods are named after their case id; see the [test plan](test-plan.md).
+1. **Automated tests.** `mvn clean verify` gives **0 failures, 0 errors** (BUILD SUCCESS) across
+   37 test cases. JUnit counts 247 executions because parameterized cases expand and the two race
+   cases repeat 100 times each. Test methods are named after their case id; see the
+   [test plan](test-plan.md).
 2. **A black-box run through the CLI.** One `BookingCli` process was driven over stdin/stdout, as an
    outside caller would use it, with fresh inputs (`provider-A`/`provider-B`, December dates) that do
    not appear in the unit tests. Result: **22/22 checks passed**, and the CLI exited with code 0.
@@ -112,7 +114,9 @@ criteria in the brief. Each criterion has two independent kinds of evidence:
   because no starter project was supplied. The service defines its own pattern: one lock per
   provider around check + insert, and a re-read under the lock on cancel
   ([BookingService.java:62, 87, 115](../src/main/java/com/example/booking/BookingService.java#L62)).
-  The focused concurrency tests above cover it.
+  The focused concurrency tests above cover it. Removing either lock makes its race test fail in
+  roughly half or more of the 100 repetitions (TC-050: 89–93; TC-051: 49–51), so the tests detect
+  a real race; see the sensitivity check in the [test plan](test-plan.md).
 - Every test was seen to fail before its implementation existed. Red/green counts per phase are in
   [prompts/05-implement.md](../prompts/05-implement.md).
 
@@ -147,7 +151,7 @@ Checked against the brief's scope boundaries on the same commit (read-only inspe
 ## How to reproduce
 
 ```bash
-mvn clean verify                                                    # 247 tests
+mvn clean verify                                                    # 37 cases, 247 executions
 mvn -q package -DskipTests
 java -cp target/classes com.example.booking.cli.BookingCli demo     # scripted walk-through
 java -cp target/classes com.example.booking.cli.BookingCli          # then type the commands shown above

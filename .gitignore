@@ -11,3 +11,11 @@ target/
 
 # Local-only test harness (not a deliverable)
 local-ui/
+
+# Spec Kit / Claude Code tooling: installed locally by `specify init`, not part of the submission.
+# Only the project constitution is kept, because the deliverables cite it.
+.claude/
+.specify/*
+!.specify/memory/
+.specify/memory/*
+!.specify/memory/constitution.md

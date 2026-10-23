@@ -24,6 +24,8 @@ are atomic per provider (see [design.md §4](design.md#4-concurrency-approach)).
   Cancelling needs only the **appointment id**.
 - An id is "missing" if it is null, empty, or whitespace-only. Missing ids produce `Invalid(…, required)`.
 - Providers are implicit: any non-blank id is accepted and created on first booking.
+- Ids are matched exactly as given: they are not trimmed or case-folded, so `" provider-1"` and
+  `"Provider-1"` are different providers from `"provider-1"` (limitation L12).
 - Appointment ids are random UUIDs. The CLI `demo` mode and the tests use sequential ids (`appt-1`, …)
   for readability and determinism.
 

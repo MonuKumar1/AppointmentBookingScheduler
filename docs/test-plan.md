@@ -11,10 +11,24 @@ Acceptance scenario ids are `US<story>-AS<n>`, numbered in the order they appear
 All test classes are under `src/test/java/com/example/booking/`. Test methods are named after their
 case id (`tc010_…`, `tc050_…`), so each row can be found with `grep -rn tcNNN_ src/test`.
 
-**Last run (2026-10-23):** `mvn clean verify` ×3 → 247 tests, 0 failures, 0 errors each run, including
-100/100 repetitions of TC-050 and TC-051 (SC-003). A fresh copy using only the README commands also
-passes: 7 s with a warm Maven cache. Every acceptance scenario US1-AS1…US4-AS2 has at least one
-passing case (SC-002).
+**Last run (2026-10-23):** `mvn clean verify` ×3 → 0 failures, 0 errors each run. JUnit reports 247
+executions: the 37 test cases below, with parameterized cases expanded and the two races (TC-050,
+TC-051) repeated 100 times each, which accounts for 200 of the 247 (SC-003). A fresh copy using only
+the README commands also passes: 7 s with a warm Maven cache. Every acceptance scenario
+US1-AS1…US4-AS2 has at least one passing case (SC-002).
+
+**Sensitivity check of the race tests (2026-10-23).** Because the locks existed from the first
+version (decision D1-a), the race tests had only ever been red for "method missing". To show they
+detect a real race, each lock was removed in turn, in a scratch copy (not committed), and
+`mvn test -Dtest=ConcurrencyTest` was run 3 times per change:
+
+| Change to `BookingService` | Test that caught it | Failing repetitions (3 runs) |
+|---|---|---|
+| `book`: `synchronized (schedule)` removed | TC-050 (more than one `Booked`; some runs also hit `ConcurrentModificationException` on the unguarded map) | 89, 91, 93 of 100 |
+| `cancel`: `synchronized (schedule)` removed | TC-051 (more than one `Cancelled`) | 49, 50, 51 of 100 |
+
+With the locks restored, all 100 repetitions pass. The tests catch both mutations reliably, but
+still give confidence rather than proof (limitation L7).
 
 | Test case | Requirement(s) | Acceptance scenario(s) | Summary | Test class | Status |
 |---|---|---|---|---|---|

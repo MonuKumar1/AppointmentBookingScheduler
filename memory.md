@@ -8,7 +8,7 @@ Detail lives in the linked files; keep this file short.
 
 - Active feature: `specs/001-appointment-booking/` (`.specify/feature.json` is gitignored. On a new machine, recreate it as `{"feature_directory": "specs/001-appointment-booking"}`)
 - Phases done: `/speckit-constitution` (v1.0.0), `/speckit-specify` + clarifications, `/speckit-plan` (plan, research, data-model, contracts, quickstart), `/speckit-tasks`, `/speckit-analyze`, `/speckit-implement` (all 32 tasks done; 247/247 tests green). `spec.md` has 0 [NEEDS CLARIFICATION]; quality checklist passes.
-- **Next step:** none required. All deliverables done and reviewed (records 01–08 accepted). Optional: `git push`, `/code-review`.
+- **Next step:** commit and push the review fixes (records 01–09 accepted; tooling untracked via `git rm --cached`).
 - Committed by the user as `79732fa` on `main`. Acceptance validation done afterwards: all 7 brief criteria met and scope S1–S4 within bounds (`docs/acceptance-report.md`, 247 tests + 22/22 black-box CLI checks). Uncommitted: the report, `prompts/07-acceptance.md`, a README link row, and this file.
 
 ## Decisions made
@@ -27,7 +27,8 @@ Detail lives in the linked files; keep this file short.
 | 2026-10-23 | /speckit-analyze: FR-014–018 renumbered DR-001–005 (deliverable reqs, exempt from automated-test rule); small fixes applied. D1 = (a) locks from the start (US4 tests written inside US1/US2 phases; 32 tasks); D3 = accept `-00:00` | prompts/04b-analyze.md |
 | 2026-10-23 | Acceptance validation: tests + black-box CLI run only, no mutation checks (user choice); report in docs/acceptance-report.md | prompts/07-acceptance.md |
 | 2026-10-23 | Deliverables review: README points reviewers to docs/design.md first (specs/ = process trail); limitations split discovered (L7–L11) vs prototype limits (L1–L6); verbatim excerpts added to AI records | prompts/08-deliverables.md |
-| 2026-10-23 | Local test UI (HTML + Swagger over a JDK HttpServer) lives in gitignored `local-ui/`; not a deliverable, no README mention, pom untouched. Run: `./local-ui/c[port]` | .gitignore |
+| 2026-10-23 | Local test UI (HTML + Swagger over a JDK HttpServer) lives in gitignored `local-ui/`; not a deliverable, no README mention, pom untouched. Run instructions live inside `local-ui/` | .gitignore |
+| 2026-10-23 | Code review scored 85/100. Applied: race-test sensitivity check (TC-050 and TC-051 caught both lock removals), "37 cases / 247 executions" wording, ids exact-match documented (L12), `tc052` renamed, Spec Kit tooling untracked (constitution kept). Record 09 accepted; ids stay exact-match (L12); human code-review note added to record 05 | prompts/09-review.md |
 | 2026-10-23 | CLI: stdin/stdout line commands + `demo`; run via `java -cp target/classes com.example.booking.cli.BookingCli` | contracts/cli.md |
 
 ## Fixed rules from the brief

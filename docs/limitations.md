@@ -19,6 +19,11 @@
   was to accept it because it is a zero offset. RFC 3339 uses `-00:00` to mean "UTC, local offset
   unknown", and such callers get UTC semantics, which is the only time-zone handling in scope.
 
+- **L12: Ids are not normalised.** Found in the 2026-10-23 code review. A provider id with
+  surrounding spaces or different case is a different provider, so a caller that pads or re-cases
+  ids could double-book a person. Follow-up: trim (and possibly case-fold) ids at the boundary if
+  callers are not trusted to send canonical ids.
+
 ## Known limits of the in-memory prototype (by design, per the brief)
 
 - **L1: No persistence.** Data is lost on restart. A database version would need a DB-level

@@ -16,7 +16,8 @@ double-booked. It was built end-to-end using an AI-Driven Development Life Cycle
 **Build and test**
 
 ```bash
-mvn clean verify                    # compile + full test suite (≈250 tests incl. 100× concurrency races)
+mvn clean verify                    # compile + full suite: 37 test cases, 247 JUnit executions
+                                    # (two concurrency races are repeated 100× each)
 mvn test -Dtest=ConcurrencyTest     # only the concurrency races
 ```
 
@@ -74,6 +75,10 @@ memory.md                                 running project memory (state + decisi
 5. `/speckit-analyze`: cross-artifact consistency check before coding
 6. `/speckit-implement`: execute tasks test-first (red → green)
 
+The Spec Kit tooling itself (`.specify/` scripts and templates, `.claude/skills/`) is installed by
+`specify init` and is not committed; only the constitution is. Nothing here is needed to build or
+test the code.
+
 ## How AI Was Used
 
 Each row links to the record of the exact prompt, a summary of the response, the human review and
@@ -90,3 +95,4 @@ disposition, and how the output was verified.
 | Test | `src/test/java/**`, `docs/test-plan.md` | All tests; red/green evidence per phase | Accepted; TC-010 deviation rejected and reworked | [06-test.md](prompts/06-test.md) |
 | Acceptance | `docs/acceptance-report.md` | Validation against the 7 acceptance criteria (tests + 22 black-box CLI checks) | Accepted; human re-ran the suite and CLI commands | [07-acceptance.md](prompts/07-acceptance.md) |
 | Deliverables review | README, `docs/limitations.md`, AI records | Deliverable-by-deliverable gap review (reading order, limitations split, verbatim excerpts) | Accepted; human checked excerpts against the session | [08-deliverables.md](prompts/08-deliverables.md) |
+| Code review | Test plan, acceptance report, assumptions, limitations, `.gitignore`, `tc052` rename | Review against the brief; lock-removal sensitivity check of the race tests (TC-050 and TC-051 both caught it) | Accepted; human re-ran the sensitivity check and kept ids exact-match (L12) | [09-review.md](prompts/09-review.md) |

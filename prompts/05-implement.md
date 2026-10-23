@@ -59,3 +59,15 @@ Human verification (as stated by the user, 2026-10-23):
 - ran the CLI demo;
 - read the production code (`BookingService` locking and validation, the CLI);
 - checked `docs/acceptance-report.md` against the brief.
+
+Human code review (added 2026-10-23, after the review in [09-review.md](09-review.md)). The human
+read the following parts of the AI-written production code and was satisfied with each:
+- **Overlap condition** in `BookingService.book`: `newStart < a.end && a.start < newEnd`, applied
+  only to `ACTIVE` appointments, so half-open adjacency is allowed and cancelled slots are free.
+- **Lock in `book`**: the overlap scan and the insert run in one `synchronized (schedule)` block, and
+  `computeIfAbsent` gives every thread the same schedule object for a provider.
+- **UTC parsing** in `UtcTimestamps`: non-zero offsets are rejected rather than converted, and
+  `Instant.parse` is deliberately not used.
+
+The cancel path (re-read under the lock) was not reviewed line by line. It is covered by TC-051
+and by the lock-removal sensitivity check in `docs/test-plan.md`.

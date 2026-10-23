@@ -48,7 +48,7 @@ class ConcurrencyTest {
     }
 
     @Test
-    void tc052_differentProvidersNeverBlockEachOther() throws Exception {
+    void tc052_differentProvidersAllBookSameSlot() throws Exception {
         BookingService service = new BookingService();
         List<BookingResult> results =
                 race(i -> () -> service.book("provider-" + (i + 1), SLOT_START, SLOT_END));
