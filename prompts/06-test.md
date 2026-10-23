@@ -24,6 +24,20 @@ corresponding production code.
 - **Deviation from the task text**: TC-010 additionally checks the `Booked` result on a second, fresh
   service, because the shared fixture had already consumed `appt-1`. *(Rejected by the human; see below.)*
 
+## Response excerpts (verbatim)
+The TC-010 code the human rejected (an extra booking on a second, fresh service):
+```java
+BookingResult result = newService().book(P1, at("09:00"), at("10:00"));
+BookingResult.Booked booked = assertInstanceOf(BookingResult.Booked.class, result);
+assertEquals("appt-1", booked.appointment().id());
+```
+Replaced on review by assertions on the fixture's own result:
+```java
+BookingResult.Booked booked = assertInstanceOf(BookingResult.Booked.class, existingResult);
+Appointment appt = booked.appointment();
+assertEquals("appt-1", appt.id());
+```
+
 ## Human review note
 **Accepted** by the human reviewer on 2026-10-23, with one **rejection**: the TC-010 deviation (an extra
 booking on a second, fresh service) was rejected. TC-010 was reworked to match the task text exactly.

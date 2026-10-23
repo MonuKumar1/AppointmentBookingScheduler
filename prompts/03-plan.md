@@ -28,6 +28,13 @@ because it silently converts offsets). Sealed result types Booked/Conflict/Inval
 Cancelled/NotFound/AlreadyCancelled/Invalid. stdin/stdout CLI with a `demo` mode.
 `@RepeatedTest(100)` × 16-thread latch race. Constitution Check: all PASS, no Complexity Tracking.
 
+## Response excerpts (verbatim)
+The stack option the AI offered as its recommendation (not taken; the human chose Java):
+> **Python 3.11 + pytest (Recommended)**: Least code for a library + CLI; standard-library threading.Lock for the atomic check-and-insert; easy thread-based concurrency test. Needs a venv and `pip install pytest`.
+
+The AI's answer to "should i use existing java 23 or … install java 21":
+> Use the Java 23 you already have, and set the build to target Java 21 (`<maven.compiler.release>21</maven.compiler.release>` in `pom.xml`). No install needed.
+
 ## Human review note
 Accepted by the human reviewer on 2026-10-23. The user stated they had gone through all planning artifacts ("plans you can mark as accepted by human as i have gone through all"). Earlier intervention: the user rejected the AI picking the stack and chose Java 23 targeting 21, Maven, and JUnit 5. 
 

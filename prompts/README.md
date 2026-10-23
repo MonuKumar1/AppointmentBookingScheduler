@@ -29,6 +29,9 @@ Each file contains:
 ## Response summary
 <excerpt or short summary of what the AI produced>
 
+## Response excerpts (verbatim)
+<optional: short quotes of the AI output that was accepted, edited, or rejected>
+
 ## Human review note
 <disposition: accepted / edited / rejected, what changed, and why>
 

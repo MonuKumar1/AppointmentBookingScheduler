@@ -34,6 +34,10 @@ More examples and expected output: [quickstart.md](specs/001-appointment-booking
 
 ## Documentation
 
+**Start with [docs/design.md](docs/design.md).** It is the self-contained design spec. The `docs/`
+files and [prompts/](prompts/) are the deliverables. `specs/` is the Spec Kit process trail (spec,
+plan, research, tasks) that produced them; read it only for detail or audit.
+
 | Document | Contents |
 |---|---|
 | [docs/design.md](docs/design.md) | Design spec: service boundary, data/API design, booking invariant, concurrency approach, tradeoffs |
@@ -41,7 +45,7 @@ More examples and expected output: [quickstart.md](specs/001-appointment-booking
 | [docs/limitations.md](docs/limitations.md) | Limitations and follow-up risks |
 | [docs/acceptance-report.md](docs/acceptance-report.md) | Validation against the brief's 7 acceptance criteria and 4 scope rules: verdicts plus test, black-box, and inspection evidence |
 | [docs/test-plan.md](docs/test-plan.md) | Requirement and acceptance-scenario → test-case traceability matrix |
-| [specs/001-appointment-booking/](specs/001-appointment-booking/) | Spec Kit artifacts: spec, plan, research, data model, contracts, quickstart, tasks |
+| [specs/001-appointment-booking/](specs/001-appointment-booking/) | Process trail (Spec Kit): spec, plan, research, data model, contracts, quickstart, tasks |
 | [prompts/](prompts/) | AI prompt and use record for every phase |
 
 ## Project structure
@@ -85,3 +89,4 @@ disposition, and how the output was verified.
 | Implement | `src/main/java/**` | All production code | Accepted after review; 2 AI-initiated doc edits approved | [05-implement.md](prompts/05-implement.md) |
 | Test | `src/test/java/**`, `docs/test-plan.md` | All tests; red/green evidence per phase | Accepted; TC-010 deviation rejected and reworked | [06-test.md](prompts/06-test.md) |
 | Acceptance | `docs/acceptance-report.md` | Validation against the 7 acceptance criteria (tests + 22 black-box CLI checks) | Accepted; human re-ran the suite and CLI commands | [07-acceptance.md](prompts/07-acceptance.md) |
+| Deliverables review | README, `docs/limitations.md`, AI records | Deliverable-by-deliverable gap review (reading order, limitations split, verbatim excerpts) | Accepted; human checked excerpts against the session | [08-deliverables.md](prompts/08-deliverables.md) |

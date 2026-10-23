@@ -45,6 +45,16 @@ Spec with 4 prioritised user stories (book/no double-booking P1, cancel P2, conc
 FR-001..FR-018, 7 success criteria, edge cases, assumptions. 3 [NEEDS CLARIFICATION] markers:
 client identifier (FR-001), non-UTC timestamp handling (FR-005), interface form (FR-013).
 
+## Response excerpts (verbatim)
+The marker the AI wrote into `spec.md` FR-001, which the human later challenged:
+> [NEEDS CLARIFICATION: Must a booking also carry a client/customer identifier (and therefore reject a missing one), or is the provider identifier the only required identifier?]
+
+The AI's recommendation when presenting the three questions:
+> My picks would be **Q1: A, Q2: A, Q3: A**.
+
+After the human asked "have i mentioned about client id?":
+> No, you didn't mention a client ID. The only identifier your brief names is the provider, and cancellation needs an appointment identifier.
+
 ## Human review note
 Accepted by the human reviewer on 2026-10-23. The user stated they had gone through all planning artifacts ("plans you can mark as accepted by human as i have gone through all"). Edits made during review: the client-ID question was challenged and dropped (Q1 → A); Q2 and Q3 were answered by the user. 
 
