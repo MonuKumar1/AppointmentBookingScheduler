@@ -21,6 +21,7 @@ class BookingTest {
     static final String P2 = "provider-2";
 
     private BookingService service;
+    private BookingResult existingResult;
 
     static BookingService newService() {
         AtomicInteger seq = new AtomicInteger();
@@ -34,22 +35,21 @@ class BookingTest {
     @BeforeEach
     void bookExisting() {
         service = newService();
-        assertInstanceOf(BookingResult.Booked.class, service.book(P1, at("09:00"), at("10:00")));
+        existingResult = service.book(P1, at("09:00"), at("10:00"));
+        assertInstanceOf(BookingResult.Booked.class, existingResult);
     }
 
     @Test
     void tc010_validBookingSucceeds() {
-        Appointment appt = service.findById("appt-1").orElseThrow();
+        BookingResult.Booked booked = assertInstanceOf(BookingResult.Booked.class, existingResult);
+        Appointment appt = booked.appointment();
+        assertEquals("appt-1", appt.id());
         assertEquals(P1, appt.providerId());
         assertEquals(Instant.parse(at("09:00")), appt.start());
         assertEquals(Instant.parse(at("10:00")), appt.end());
         assertEquals(AppointmentStatus.ACTIVE, appt.status());
         assertEquals(NOW, appt.createdAt());
-
-        BookingResult result = newService().book(P1, at("09:00"), at("10:00"));
-        BookingResult.Booked booked = assertInstanceOf(BookingResult.Booked.class, result);
-        assertEquals("appt-1", booked.appointment().id());
-        assertEquals(AppointmentStatus.ACTIVE, booked.appointment().status());
+        assertEquals(appt, service.findById("appt-1").orElseThrow());
         assertNoOverlappingActive(service, P1);
     }
 

@@ -22,10 +22,14 @@ corresponding production code.
 - **No-change-on-rejection**: checked by snapshot comparison (TC-020, TC-032, TC-033); for every
   validation case in `ValidationTest` it is checked in `@AfterEach` (TC-047).
 - **Deviation from the task text**: TC-010 additionally checks the `Booked` result on a second, fresh
-  service, because the shared fixture had already consumed `appt-1`.
+  service, because the shared fixture had already consumed `appt-1`. *(Rejected by the human; see below.)*
 
 ## Human review note
-_pending: does the test list cover the brief's acceptance criteria to your satisfaction?_
+**Accepted** by the human reviewer on 2026-10-23, with one **rejection**: the TC-010 deviation (an extra
+booking on a second, fresh service) was rejected. TC-010 was reworked to match the task text exactly.
+It now asserts on the fixture's own `Booked` result (`appt-1`, `ACTIVE`, `createdAt` = fixed clock)
+and on `findById("appt-1")` (change in `BookingTest.java`). After the rework, `mvn clean verify` →
+247/247 passed.
 
 ## Verification
 - Every test was seen to fail before its implementation (red counts in `05-implement.md`).
@@ -34,4 +38,7 @@ _pending: does the test list cover the brief's acceptance criteria to your satis
   (`grep -rn tcNNN_ src/test`).
 - The suite was stable across 3 consecutive clean runs (247/247 each).
 
-Human verification: _pending_
+Human verification (as stated by the user, 2026-10-23):
+- ran the test suite;
+- read the test code;
+- checked the requirement/scenario → test mapping in `docs/test-plan.md`.

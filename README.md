@@ -39,6 +39,7 @@ More examples and expected output: [quickstart.md](specs/001-appointment-booking
 | [docs/design.md](docs/design.md) | Design spec: service boundary, data/API design, booking invariant, concurrency approach, tradeoffs |
 | [docs/assumptions.md](docs/assumptions.md) | Assumptions and invariant note (UTC rule, half-open intervals, ids, state) |
 | [docs/limitations.md](docs/limitations.md) | Limitations and follow-up risks |
+| [docs/acceptance-report.md](docs/acceptance-report.md) | Validation against the brief's 7 acceptance criteria and 4 scope rules: verdicts plus test, black-box, and inspection evidence |
 | [docs/test-plan.md](docs/test-plan.md) | Requirement and acceptance-scenario → test-case traceability matrix |
 | [specs/001-appointment-booking/](specs/001-appointment-booking/) | Spec Kit artifacts: spec, plan, research, data model, contracts, quickstart, tasks |
 | [prompts/](prompts/) | AI prompt and use record for every phase |
@@ -81,5 +82,6 @@ disposition, and how the output was verified.
 | Plan | `plan.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md` | Architecture and design decisions | Edited: the human rejected the AI choosing the stack and picked Java 23 targeting 21, Maven, and JUnit 5 | [03-plan.md](prompts/03-plan.md) |
 | Tasks | `tasks.md` | Test-first task breakdown | Edited: the "unlocked first, then lock" sequence was rejected (locks from the start) | [04-tasks.md](prompts/04-tasks.md) |
 | Analyze | Spec/plan/tasks fixes | 12 findings | Human decided each finding (D1–D4) | [04b-analyze.md](prompts/04b-analyze.md) |
-| Implement | `src/main/java/**` | All production code | See record | [05-implement.md](prompts/05-implement.md) |
-| Test | `src/test/java/**`, `docs/test-plan.md` | All tests; red/green evidence per phase | See record | [06-test.md](prompts/06-test.md) |
+| Implement | `src/main/java/**` | All production code | Accepted after review; 2 AI-initiated doc edits approved | [05-implement.md](prompts/05-implement.md) |
+| Test | `src/test/java/**`, `docs/test-plan.md` | All tests; red/green evidence per phase | Accepted; TC-010 deviation rejected and reworked | [06-test.md](prompts/06-test.md) |
+| Acceptance | `docs/acceptance-report.md` | Validation against the 7 acceptance criteria (tests + 22 black-box CLI checks) | Accepted; human re-ran the suite and CLI commands | [07-acceptance.md](prompts/07-acceptance.md) |

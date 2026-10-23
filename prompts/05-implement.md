@@ -39,8 +39,9 @@ All 32 tasks (T001–T032) were executed in one batched session, phase by phase,
 | 6 CLI | BookingCliTest did not compile (`cannot find symbol BookingCli`) | 247/247 |
 
 ## Human review note
-_pending: human review of the production code and of the two AI-initiated doc edits listed under
-"Output artifact" (accept / edit / reject, and why)_
+**Accepted** by the human reviewer on 2026-10-23, with no code changes requested. Both AI-initiated
+doc edits were **approved**: the contracts/cli.md additions (`USAGE` lines, `quit`, demo echo and
+sequential ids) and the spec FR-004/FR-008/FR-009 canonical result names.
 
 ## Verification
 By the AI, independent of the code under test:
@@ -53,4 +54,8 @@ By the AI, independent of the code under test:
   README commands → 247/247, demo OK, 7 s. Caveat: Maven's cache was warm, and `git clone` was not
   possible because nothing is committed yet.
 
-Human verification: _pending_
+Human verification (as stated by the user, 2026-10-23):
+- ran `mvn clean verify` and saw it pass;
+- ran the CLI demo;
+- read the production code (`BookingService` locking and validation, the CLI);
+- checked `docs/acceptance-report.md` against the brief.

@@ -4,12 +4,12 @@ Running record of state and decisions, so a new session or a new machine can pic
 where the last one stopped. Update it at the end of every phase or whenever a decision is made.
 Detail lives in the linked files; keep this file short.
 
-## Current state (as of 2026-10-22)
+## Current state (as of 2026-10-23)
 
 - Active feature: `specs/001-appointment-booking/` (`.specify/feature.json` is gitignored. On a new machine, recreate it as `{"feature_directory": "specs/001-appointment-booking"}`)
 - Phases done: `/speckit-constitution` (v1.0.0), `/speckit-specify` + clarifications, `/speckit-plan` (plan, research, data-model, contracts, quickstart), `/speckit-tasks`, `/speckit-analyze`, `/speckit-implement` (all 32 tasks done; 247/247 tests green). `spec.md` has 0 [NEEDS CLARIFICATION]; quality checklist passes.
-- **Next step:** user reviews the implementation (`prompts/05-implement.md`, `06-test.md` have *pending* human review); user creates the branch and commits. Optional: `/speckit-converge`, `/code-review`.
-- Nothing committed yet: all files are staged or untracked on `main`. The user will create the GitHub branch and commit themselves.
+- **Next step:** user commits the acceptance docs, the TC-010 rework, and the record updates. All work is complete; optional `/code-review`.
+- Committed by the user as `79732fa` on `main`. Acceptance validation done afterwards: all 7 brief criteria met and scope S1–S4 within bounds (`docs/acceptance-report.md`, 247 tests + 22/22 black-box CLI checks). Uncommitted: the report, `prompts/07-acceptance.md`, a README link row, and this file.
 
 ## Decisions made
 
@@ -25,6 +25,7 @@ Detail lives in the linked files; keep this file short.
 | 2026-10-23 | Canonical result names: BOOKED/CONFLICT/INVALID, CANCELLED/NOT_FOUND/ALREADY_CANCELLED | data-model.md, contracts/ |
 | 2026-10-23 | Task order: US1 → US2 → US4 (red race on unlocked code, then locks) → US3 → CLI → Polish. Test IDs TC-001…TC-062 | tasks.md |
 | 2026-10-23 | /speckit-analyze: FR-014–018 renumbered DR-001–005 (deliverable reqs, exempt from automated-test rule); small fixes applied. D1 = (a) locks from the start (US4 tests written inside US1/US2 phases; 32 tasks); D3 = accept `-00:00` | prompts/04b-analyze.md |
+| 2026-10-23 | Acceptance validation: tests + black-box CLI run only, no mutation checks (user choice); report in docs/acceptance-report.md | prompts/07-acceptance.md |
 | 2026-10-23 | CLI: stdin/stdout line commands + `demo`; run via `java -cp target/classes com.example.booking.cli.BookingCli` | contracts/cli.md |
 
 ## Fixed rules from the brief
@@ -42,8 +43,7 @@ Detail lives in the linked files; keep this file short.
 ## Open items / pending human input
 
 - Records 01–04b were accepted by the user on 2026-10-23.
-- `prompts/05-implement.md` and `06-test.md`: Human review note and Human verification are *pending*.
-- Two AI-initiated doc edits during implementation need the user's OK: contracts/cli.md (`USAGE`, `quit`, demo echo + sequential ids), and spec FR-004/008/009 wording changed to canonical result names.
+- All records 01–07 reviewed by the user (2026-10-23). 05: accepted, both AI doc edits approved. 06: accepted; TC-010 deviation rejected and reworked. 07: accepted; driver script kept out of the repo.
 - Env note: Maven runs on Homebrew JDK 25; `java` on PATH is 23. Fine because of release=21.
 
 ## Working preferences (from the user)
